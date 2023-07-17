@@ -1,0 +1,238 @@
+    {
+        "annotations": {
+          "list": [
+            {
+              "builtIn": 1,
+              "datasource": "-- Grafana --",
+              "enable": true,
+              "hide": true,
+              "iconColor": "rgba(0, 211, 255, 1)",
+              "name": "Annotations & Alerts",
+              "target": {
+                "limit": 100,
+                "matchAny": false,
+                "tags": [],
+                "type": "dashboard"
+              },
+              "type": "dashboard"
+            }
+          ]
+        },
+        "editable": true,
+        "gnetId": null,
+        "graphTooltip": 0,
+        "id": 41,
+        "iteration": 1631305903015,
+        "links": [
+          {
+            "asDropdown": false,
+            "icon": "dashboard",
+            "includeVars": false,
+            "keepTime": false,
+            "tags": [
+              "kafka-balancing"
+            ],
+            "targetBlank": false,
+            "title": "Topic balancing",
+            "tooltip": "",
+            "type": "dashboards",
+            "url": ""
+          }
+        ],
+        "panels": [
+          {
+            "datasource": null,
+            "gridPos": {
+              "h": 2,
+              "w": 24,
+              "x": 0,
+              "y": 0
+            },
+            "id": 12,
+            "options": {
+              "content": "Shows the distribution of messages not consumed (lag) across partitions in consumer group.",
+              "mode": "markdown"
+            },
+            "pluginVersion": "8.1.3",
+            "type": "text"
+          },
+          {
+            "datasource": null,
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "axisSoftMax": 1,
+                  "axisSoftMin": 0,
+                  "fillOpacity": 80,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineWidth": 1
+                },
+                "mappings": [],
+                "min": 0,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                },
+                "unit": "short"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 2
+            },
+            "id": 2,
+            "options": {
+              "barWidth": 1,
+              "groupWidth": 0.7,
+              "legend": {
+                "calcs": [],
+                "displayMode": "hidden",
+                "placement": "bottom"
+              },
+              "orientation": "vertical",
+              "showValue": "never",
+              "stacking": "none",
+              "text": {},
+              "tooltip": {
+                "mode": "single"
+              }
+            },
+            "pluginVersion": "8.1.2",
+            "repeat": "topic",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "exemplar": true,
+                "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"$consumergroup\", topic=~\"$topic\"}) by (topic, partition)",
+                "format": "table",
+                "instant": true,
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+              }
+            ],
+            "title": "$topic",
+            "type": "barchart"
+          }
+        ],
+        "refresh": "",
+        "schemaVersion": 30,
+        "style": "dark",
+        "tags": [
+          "kafka-balancing"
+        ],
+        "templating": {
+          "list": [
+            {
+              "allValue": null,
+              "current": {
+                "selected": false,
+                "text": "test4",
+                "value": "test4"
+              },
+              "datasource": null,
+              "definition": "label_values(kafka_brokers, namespace)",
+              "description": null,
+              "error": null,
+              "hide": 0,
+              "includeAll": false,
+              "label": "Namespace",
+              "multi": false,
+              "name": "namespace",
+              "options": [],
+              "query": {
+                "query": "label_values(kafka_brokers, namespace)",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            },
+            {
+              "allValue": null,
+              "current": {
+                "selected": false,
+                "text": "9907e59d-ede5-4539-8825-c5b1aa24bf05",
+                "value": "9907e59d-ede5-4539-8825-c5b1aa24bf05"
+              },
+              "datasource": null,
+              "definition": "label_values(kafka_consumergroup_lag{namespace=\"$namespace\"}, consumergroup)",
+              "description": null,
+              "error": null,
+              "hide": 0,
+              "includeAll": false,
+              "label": "Consumer group",
+              "multi": false,
+              "name": "consumergroup",
+              "options": [],
+              "query": {
+                "query": "label_values(kafka_consumergroup_lag{namespace=\"$namespace\"}, consumergroup)",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            },
+            {
+              "allValue": null,
+              "current": {
+                "selected": false,
+                "text": "All",
+                "value": "$__all"
+              },
+              "datasource": null,
+              "definition": "label_values(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"$consumergroup\"}, topic)",
+              "description": null,
+              "error": null,
+              "hide": 2,
+              "includeAll": true,
+              "label": "Topic",
+              "multi": false,
+              "name": "topic",
+              "options": [],
+              "query": {
+                "query": "label_values(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"$consumergroup\"}, topic)",
+                "refId": "StandardVariableQuery"
+              },
+              "refresh": 1,
+              "regex": "",
+              "skipUrlSync": false,
+              "sort": 1,
+              "type": "query"
+            }
+          ]
+        },
+        "time": {
+          "from": "now-6h",
+          "to": "now"
+        },
+        "timepicker": {
+          "hidden": true
+        },
+        "timezone": "",
+        "title": "Consumer group partition balancing",
+        "uid": "-HkCUZInz",
+        "version": 11
+      }

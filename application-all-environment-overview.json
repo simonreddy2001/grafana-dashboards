@@ -1,0 +1,970 @@
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "gnetId": null,
+      "graphTooltip": 0,
+      "iteration": 1624971603737,
+      "links": [],
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "datasource": null,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Memory Usage"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "decmbytes"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "CPU Usage"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "Core"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 17,
+            "x": 0,
+            "y": 0
+          },
+          "id": 2,
+          "links": [],
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.9",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum(kube_pod_container_resource_requests_cpu_cores)",
+              "format": "time_series",
+              "interval": "",
+              "legendFormat": "CPU Usage",
+              "refId": "cpu-usage"
+            },
+            {
+              "exemplar": true,
+              "expr": "sum(kube_pod_container_resource_requests_memory_bytes)/1024/1024",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Memory Usage",
+              "refId": "memory-usage"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Infrastructure KPI's",
+          "type": "stat"
+        },
+        {
+          "datasource": "Alertmanager",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 17,
+            "y": 0
+          },
+          "id": 58,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "count"
+              ],
+              "fields": "/^severity$/",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.9",
+          "targets": [
+            {
+              "active": true,
+              "annotations": false,
+              "expr": "severity=\"critical\"",
+              "filters": "severity=critical",
+              "labelSelector": "*",
+              "legendFormat": "All Critical Alert",
+              "refId": "A",
+              "target": "Query",
+              "type": "timeserie"
+            }
+          ],
+          "title": "All Critical Alert",
+          "type": "stat"
+        },
+        {
+          "datasource": "Alertmanager",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 20,
+            "y": 0
+          },
+          "id": 96,
+          "options": {
+            "colorMode": "background",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "count"
+              ],
+              "fields": "/^severity$/",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.9",
+          "targets": [
+            {
+              "active": true,
+              "annotations": false,
+              "expr": "severity=\"warning\"",
+              "filters": "severity=warning",
+              "labelSelector": "*",
+              "legendFormat": "All Warning Alert",
+              "refId": "A",
+              "target": "Query",
+              "type": "single"
+            }
+          ],
+          "title": "All Warning Alert",
+          "type": "stat"
+        },
+        {
+          "collapsed": false,
+          "datasource": null,
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 5
+          },
+          "id": 18,
+          "panels": [],
+          "repeat": null,
+          "title": "${namespace}",
+          "type": "row"
+        },
+        {
+          "datasource": "-- Mixed --",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "flowchartsData": {
+            "flowcharts": [
+              {
+                "allowDrawio": false,
+                "bgColor": null,
+                "center": true,
+                "csv": "## See more information for the syntax at https://drawio-app.com/import-from-csv-to-drawio/\n##\n## Example CSV. Use ## for comments and # for configuration.\n## The following names are reserved and should not be used (or ignored):\n## id, tooltip, placeholder(s), link and label (see below)\n##\n#\n## Node label with placeholders and HTML.\n## Default is '%name_of_first_column%'.\n#\n# label: %name%<br><i style=\"color:gray;\">%position%</i><br><a href=\"mailto:%email%\">Email</a>\n#\n## Node style (placeholders are replaced once).\n## Default is the current style for nodes.\n#\n# style: label;image=%image%;whiteSpace=wrap;html=1;rounded=1;fillColor=%fill%;strokeColor=%stroke%;\n#\n## Parent style for nodes with child nodes (placeholders are replaced once).\n#\n# parentstyle: swimlane;whiteSpace=wrap;html=1;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;\n#\n## Optional column name that contains a reference to a named style in styles.\n## Default is the current style for nodes.\n#\n# stylename: -\n#\n## JSON for named styles of the form {\"name\": \"style\", \"name\": \"style\"} where style is a cell style with\n## placeholders that are replaced once.\n#\n# styles: -\n#\n## Optional column name that contains a reference to a named label in labels.\n## Default is the current label.\n#\n# labelname: -\n#\n## JSON for named labels of the form {\"name\": \"label\", \"name\": \"label\"} where label is a cell label with\n## placeholders.\n#\n# labels: -\n#\n## Uses the given column name as the identity for cells (updates existing cells).\n## Default is no identity (empty value or -).\n#\n# identity: -\n#\n## Uses the given column name as the parent reference for cells. Default is no parent (empty or -).\n## The identity above is used for resolving the reference so it must be specified.\n#\n# parent: -\n#\n## Adds a prefix to the identity of cells to make sure they do not collide with existing cells (whose\n## IDs are numbers from 0..n, sometimes with a GUID prefix in the context of realtime collaboration).\n## Default is csvimport-.\n#\n# namespace: csvimport-\n#\n## Connections between rows (\"from\": source colum, \"to\": target column).\n## Label, style and invert are optional. Defaults are '', current style and false.\n## If placeholders are used in the style, they are replaced with data from the source.\n## An optional placeholders can be set to target to use data from the target instead.\n## In addition to label, an optional fromlabel and tolabel can be used to name the column\n## that contains the text for the label in the edges source or target (invert ignored).\n## The label is concatenated in the form fromlabel + label + tolabel if all are defined.\n## The target column may contain a comma-separated list of values.\n## Multiple connect entries are allowed.\n#\n# connect: {\"from\": \"manager\", \"to\": \"name\", \"invert\": true, \"label\": \"manages\", \\\n#          \"style\": \"curved=1;endArrow=blockThin;endFill=1;fontSize=11;\"}\n# connect: {\"from\": \"refs\", \"to\": \"id\", \"style\": \"curved=1;fontSize=11;\"}\n#\n## Node x-coordinate. Possible value is a column name. Default is empty. Layouts will\n## override this value.\n#\n# left: \n#\n## Node y-coordinate. Possible value is a column name. Default is empty. Layouts will\n## override this value.\n#\n# top: \n#\n## Node width. Possible value is a number (in px), auto or an @ sign followed by a column\n## name that contains the value for the width. Default is auto.\n#\n# width: auto\n#\n## Node height. Possible value is a number (in px), auto or an @ sign followed by a column\n## name that contains the value for the height. Default is auto.\n#\n# height: auto\n#\n## Padding for autosize. Default is 0.\n#\n# padding: -12\n#\n## Comma-separated list of ignored columns for metadata. (These can be\n## used for connections and styles but will not be added as metadata.)\n#\n# ignore: id,image,fill,stroke,refs,manager\n#\n## Column to be renamed to link attribute (used as link).\n#\n# link: url\n#\n## Spacing between nodes. Default is 40.\n#\n# nodespacing: 40\n#\n## Spacing between levels of hierarchical layouts. Default is 100.\n#\n# levelspacing: 100\n#\n## Spacing between parallel edges. Default is 40. Use 0 to disable.\n#\n# edgespacing: 40\n#\n## Name or JSON of layout. Possible values are auto, none, verticaltree, horizontaltree,\n## verticalflow, horizontalflow, organic, circle or a JSON string as used in Layout, Apply.\n## Default is auto.\n#\n# layout: auto\n#\n## ---- CSV below this line. First line are column names. ----\nname,position,id,location,manager,email,fill,stroke,refs,url,image\nEvan Miller,CFO,emi,Office 1,,me@example.com,#dae8fc,#6c8ebf,,https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-9-2-128.png\nEdward Morrison,Brand Manager,emo,Office 2,Evan Miller,me@example.com,#d5e8d4,#82b366,,https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png\nRon Donovan,System Admin,rdo,Office 3,Evan Miller,me@example.com,#d5e8d4,#82b366,\"emo,tva\",https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-2-128.png\nTessa Valet,HR Director,tva,Office 4,Evan Miller,me@example.com,#d5e8d4,#82b366,,https://www.draw.io,https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-3-128.png\n",
+                "download": false,
+                "editorTheme": "dark",
+                "editorUrl": "https://www.draw.io",
+                "enableAnim": true,
+                "grid": false,
+                "lock": true,
+                "name": "Main",
+                "scale": true,
+                "tooltip": true,
+                "type": "xml",
+                "url": "http://<YourUrl>/<Your XML/drawio file/api>",
+                "xml": "<mxfile host=\"app.diagrams.net\" modified=\"2021-05-31T04:51:05.082Z\" agent=\"5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36\" etag=\"Skc1MqEFemNXzSoHSTdX\" version=\"14.7.3\" type=\"embed\"><diagram id=\"nSCDQoJIyQJ8HdF3prlr\" name=\"Page-1\">7VpNj9owEP01XCsnIR8cFwptpV1ptXtor25iwFrHTh2zwP76jhMnJDFsUdkK1CTKAT+PY8/M82McGHmzdPdF4mz9IBLCRi5KdiPv88h1nbHrjvSNkn2JTIKwBFaSJsboADzTN2JAZNANTUjeMlRCMEWzNhgLzkmsWhiWUmzbZkvB2rNmeEUs4DnGzEa/00StSzRywwP+ldDVuprZCSZlT4orY+NJvsaJ2Dae6s1H3kwKocpP6W5GmA5eFZdy3OJEb70wSbg6Z0BgMvGK2cY4N5NUUfAV0DtGpDILVfvK+3xLU4Y5tKZLwdWz6XGgHa8pS+7xXmz07LnC8UvVmq6FpG9gD08ujaFbKpPcsd+yeNYjAUaASpKDzWPlktOBHvCuZXiPc2WAWDCGs5z+rNeXYrmifCqUEqkxWlLGZoIJWTjnYRch1y9WJ8ULafQECwSXcbqBL4urCkbpjhNB286FSc8rRJXsukmH3UJESpTcg4npjQxNzD4Zm+b2QLoaWzcIV4PYEH1VP7me7Ak2BuYrCE09m+e1p5tE9nz+semC9myYKSI5VmQqNjzJmwSEDw0/D1BByxMUHVsU/WFxEuKpjiUNIT9ER9KMUIQLHDO64oDFkCQCnVOdHE3/O9OR0iTRs0zzDMeUr+7JUrs9PiBPJhIaEjB8yYodvYaBhGteCoUVLkmop8wE5aoIlT+FGwI6Q5/8kQ/rmkHbObTh1uYS6MbBNUwLIhFg+JZolp9DxRAdpWK98f/MxYp8/nnkcyb+afK1ePBe0iMr6d+x5BDtfsrSEgdRwVeL4bPQ82tZaspPFY9F40lc1PFpPGJRXB+jWF4wSJZbfd2fI1mDMHWEKTqbctcQptC3UvtEfm2017rUWugck7hf4lRz9p2v36vVTJ7bRwUKgwuKJi/wJl5i55kU13+hTU0N6nATIVPn21ysN/+NalNoJf2B5DmcRvNBnG5DnLrlUU/Vya7uB3W6XJ3Cs9l4FXWyi+K5lOCXiyQQq6eq1NWYU1pkbYOPPLR1SqYA9VGUqkX0+9D2jvT8FRfrXX+bohQ5VtLnu5hkigo+CNPVhalbLvVUmewfaQZlupiM0flsvIoyeVbSITpwlCulqZeadBNHuE6xFB2RiB5I0iU/yg0nuBMnuHrP36gk2e++7x6/6TKJ5BkEQ7NW0bSvFdNNqFO3YuqpPA2vv/+FPN3U629oHv4nVXLk8G8zb/4b</diagram></mxfile>",
+                "zoom": "100%"
+              }
+            ]
+          },
+          "format": "short",
+          "graphId": "flowchart_498",
+          "gridPos": {
+            "h": 12,
+            "w": 3,
+            "x": 0,
+            "y": 6
+          },
+          "id": 498,
+          "interval": null,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "detail environment",
+              "url": "https://grafana.sa-nonprod.airhart.aero/d/yyaxEM3Mz/selected-environment-overview?orgId=1&refresh=5s&var-namespace=$namespace"
+            }
+          ],
+          "maxPerRow": 8,
+          "newFlag": false,
+          "pluginVersion": "7.5.5",
+          "repeat": "namespace",
+          "repeatDirection": "h",
+          "rulesData": {
+            "rulesData": [
+              {
+                "aggregation": "current",
+                "alias": "request-per-sec",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 1,
+                "overlayIcon": false,
+                "pattern": "request-per-sec",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "76",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "short",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "error-rate",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)",
+                  "rgba(245, 54, 54, 0.9)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 2,
+                "overlayIcon": false,
+                "pattern": "error-rate",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [
+                  {
+                    "colorOn": "wc",
+                    "hidden": false,
+                    "pattern": "80",
+                    "style": "fillColor"
+                  }
+                ],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [
+                  "/.*/"
+                ],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "80",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [
+                  0.5
+                ],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "percent",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "exception-rate",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)",
+                  "rgba(245, 54, 54, 0.9)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 3,
+                "overlayIcon": false,
+                "pattern": "exception-rate",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [
+                  {
+                    "colorOn": "wc",
+                    "hidden": false,
+                    "pattern": "82",
+                    "style": "fillColor"
+                  }
+                ],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [
+                  "/.*/"
+                ],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "82",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [
+                  0.5
+                ],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "percent",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "congestion",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 4,
+                "overlayIcon": false,
+                "pattern": "congestion",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "84",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "short",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "api-response-time",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 5,
+                "overlayIcon": false,
+                "pattern": "api-response-time",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "86",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "short",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "critical-alert",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)",
+                  "#C4162A"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 0,
+                "eventData": [
+                  {
+                    "eventOn": 0,
+                    "hidden": false,
+                    "pattern": "",
+                    "style": "shape",
+                    "value": ""
+                  }
+                ],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 6,
+                "overlayIcon": false,
+                "pattern": "critical-alert",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [
+                  {
+                    "colorOn": "wc",
+                    "hidden": false,
+                    "pattern": "64",
+                    "style": "fillColor"
+                  }
+                ],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "64",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [
+                  1
+                ],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "short",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "warning-alert",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)",
+                  "rgba(237, 129, 40, 0.89)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 0,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 7,
+                "overlayIcon": false,
+                "pattern": "warning-alert",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [
+                  {
+                    "colorOn": "wc",
+                    "hidden": false,
+                    "pattern": "69",
+                    "style": "fillColor"
+                  }
+                ],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [
+                  "/.*/"
+                ],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "69",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [
+                  1
+                ],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "short",
+                "valueData": []
+              },
+              {
+                "aggregation": "current",
+                "alias": "message-per-sec",
+                "colors": [
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "column": "Time",
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "eventData": [],
+                "eventProp": "id",
+                "eventRegEx": false,
+                "gradient": false,
+                "hidden": false,
+                "invert": true,
+                "linkData": [],
+                "linkProp": "id",
+                "linkRegEx": true,
+                "mappingType": 1,
+                "metricType": "serie",
+                "order": 8,
+                "overlayIcon": false,
+                "pattern": "message-per-sec",
+                "rangeData": [],
+                "reduce": true,
+                "refId": "A",
+                "sanitize": false,
+                "shapeData": [],
+                "shapeProp": "id",
+                "shapeRegEx": true,
+                "stringThresholds": [],
+                "textData": [
+                  {
+                    "hidden": false,
+                    "pattern": "78",
+                    "textOn": "wmd",
+                    "textPattern": "/X/",
+                    "textReplace": "pattern"
+                  }
+                ],
+                "textProp": "id",
+                "textRegEx": true,
+                "thresholds": [],
+                "tooltip": false,
+                "tooltipColors": false,
+                "tooltipLabel": "",
+                "tooltipOn": "a",
+                "tpDirection": "v",
+                "tpGraph": false,
+                "tpGraphHigh": null,
+                "tpGraphLow": null,
+                "tpGraphScale": "linear",
+                "tpGraphSize": "100%",
+                "tpGraphType": "line",
+                "type": "number",
+                "unit": "short",
+                "valueData": []
+              }
+            ]
+          },
+          "targets": [
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(rate(http_request_duration_seconds_count{service=~\"coreapi-svc\", namespace=\"$namespace\"}[5m]))",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "request-per-sec",
+              "refId": "request-per-sec"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(rate(http_request_duration_seconds_count{namespace=~\"$namespace\",code=~\"4..|5..\"}[5m]))/sum(rate(http_request_duration_seconds_count{namespace=\"$namespace\"}[5m])) or vector(0)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "error-rate",
+              "refId": "error-rate"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(message_processed_duration_seconds_count{namespace=\"$namespace\", state=\"Error\"})/sum(message_processed_duration_seconds_count{namespace=\"$namespace\"}) or vector(0)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "exception-rate",
+              "refId": "exception-rate"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(kafka_consumergroup_lag{namespace=~\"^$namespace$\"})",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "congestion",
+              "refId": "congestion"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(rate(http_request_duration_seconds_sum{namespace=~\"$namespace\"}[5m]))/sum(rate(http_request_duration_seconds_count{namespace=\"$namespace\"}[5m]))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "api-response-time",
+              "refId": "api-response-time"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(ALERTS{namespace=\"$namespace\", severity=\"warning\"} or ALERTS{namespace=\"$namespace\", severity=\"warning\"}) or vector(0)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "warning-alert",
+              "refId": "warning-alert"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(ALERTS{namespace=\"$namespace\", severity=\"critical\"} or ALERTS{namespace=\"$namespace\", severity=\"critical\"}) or vector(0)",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "critical-alert",
+              "refId": "critical-alert"
+            },
+            {
+              "datasource": "Thanos",
+              "exemplar": true,
+              "expr": "sum(rate(message_processed_duration_seconds_count{namespace=\"$namespace\"}[5m]))",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "message-per-sec",
+              "refId": "message-per-sec"
+            }
+          ],
+          "title": "$namespace",
+          "type": "agenty-flowcharting-panel",
+          "valueName": "current",
+          "version": "0.9.0"
+        }
+      ],
+      "refresh": false,
+      "schemaVersion": 27,
+      "style": "dark",
+      "tags": [
+        "environment-dashboard"
+      ],
+      "templating": {
+        "list": [
+          {
+            "allValue": null,
+            "current": {
+              "selected": true,
+              "text": [
+                "All"
+              ],
+              "value": [
+                "$__all"
+              ]
+            },
+            "datasource": null,
+            "definition": "label_values(namespace)",
+            "description": "Environment specific",
+            "error": null,
+            "hide": 0,
+            "includeAll": true,
+            "label": "environment",
+            "multi": true,
+            "name": "namespace",
+            "options": [],
+            "query": {
+              "query": "label_values(namespace)",
+              "refId": "StandardVariableQuery"
+            },
+            "refresh": 2,
+            "regex": "^\\bpr\\d{4,}|^\\bbridge-.*|^\\btemplate.*|^\\bdev\\d*|^\\btest\\d*|^preprod.*|^prod.*",
+            "skipUrlSync": false,
+            "sort": 1,
+            "tagValuesQuery": "",
+            "tags": [],
+            "tagsQuery": "",
+            "type": "query",
+            "useTags": false
+          }
+        ]
+      },
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "timepicker": {},
+      "timezone": "",
+      "title": "All Environment Overview™",
+      "uid": "9AEfxneMk",
+      "version": 4
+    }

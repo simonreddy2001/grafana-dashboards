@@ -1,0 +1,367 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 62,
+    "iteration": 1647936596373,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": null,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisLabel": "number of produced messages",
+              "axisPlacement": "auto",
+              "axisSoftMin": 0,
+              "fillOpacity": 80,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineWidth": 1
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 11,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "barWidth": 1,
+          "groupWidth": 0.7,
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "orientation": "vertical",
+          "showValue": "never",
+          "stacking": "none",
+          "text": {},
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(kafka_topic_partition_current_offset{namespace=~\"$namespace\", topic=\"$topic\"}[$interval])) by (topic, partition)",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Inbound messages per partition",
+        "type": "barchart"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 11
+        },
+        "id": 8,
+        "panels": [
+          {
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "axisLabel": "number of consumed messages",
+                  "axisPlacement": "auto",
+                  "axisSoftMin": 0,
+                  "fillOpacity": 80,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineWidth": 1
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 24,
+              "x": 0,
+              "y": 12
+            },
+            "id": 4,
+            "options": {
+              "barWidth": 0.97,
+              "groupWidth": 0.7,
+              "legend": {
+                "calcs": [],
+                "displayMode": "hidden",
+                "placement": "bottom"
+              },
+              "orientation": "vertical",
+              "showValue": "never",
+              "stacking": "none",
+              "text": {},
+              "tooltip": {
+                "mode": "single"
+              }
+            },
+            "repeat": "consumergroup",
+            "repeatDirection": "v",
+            "targets": [
+              {
+                "exemplar": true,
+                "expr": "sum(increase(kafka_consumergroup_current_offset{namespace=~\"$namespace\", topic=\"$topic\", consumergroup=\"$consumergroup\"}[$interval])) by (topic, partition)",
+                "format": "table",
+                "instant": true,
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+              }
+            ],
+            "title": "$consumergroup",
+            "type": "barchart"
+          }
+        ],
+        "title": "Consumer groups",
+        "type": "row"
+      }
+    ],
+    "schemaVersion": 31,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "test3",
+            "value": "test3"
+          },
+          "datasource": null,
+          "definition": "label_values(kafka_brokers, namespace)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Namespace",
+          "multi": false,
+          "name": "namespace",
+          "options": [],
+          "query": {
+            "query": "label_values(kafka_brokers, namespace)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "aodb-pipeline-output",
+            "value": "aodb-pipeline-output"
+          },
+          "datasource": null,
+          "definition": "query_result(sum(kafka_topic_partitions{namespace=~\"$namespace\",topic!~\"__.*\"} > 1) by (topic))",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Topic",
+          "multi": false,
+          "name": "topic",
+          "options": [],
+          "query": {
+            "query": "query_result(sum(kafka_topic_partitions{namespace=~\"$namespace\",topic!~\"__.*\"} > 1) by (topic))",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "/\"([^\"]+)\"/",
+          "skipUrlSync": false,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "auto": false,
+          "auto_count": 30,
+          "auto_min": "10s",
+          "current": {
+            "selected": true,
+            "text": "30m",
+            "value": "30m"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "label": "Interval",
+          "name": "interval",
+          "options": [
+            {
+              "selected": false,
+              "text": "1m",
+              "value": "1m"
+            },
+            {
+              "selected": false,
+              "text": "10m",
+              "value": "10m"
+            },
+            {
+              "selected": true,
+              "text": "30m",
+              "value": "30m"
+            },
+            {
+              "selected": false,
+              "text": "1h",
+              "value": "1h"
+            },
+            {
+              "selected": false,
+              "text": "6h",
+              "value": "6h"
+            },
+            {
+              "selected": false,
+              "text": "12h",
+              "value": "12h"
+            },
+            {
+              "selected": false,
+              "text": "1d",
+              "value": "1d"
+            },
+            {
+              "selected": false,
+              "text": "7d",
+              "value": "7d"
+            },
+            {
+              "selected": false,
+              "text": "14d",
+              "value": "14d"
+            },
+            {
+              "selected": false,
+              "text": "30d",
+              "value": "30d"
+            }
+          ],
+          "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+          "queryValue": "",
+          "refresh": 2,
+          "skipUrlSync": false,
+          "type": "interval"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "datahub-flightlegconsumer--aodb-pipeline-output",
+            "value": "datahub-flightlegconsumer--aodb-pipeline-output"
+          },
+          "datasource": null,
+          "definition": "label_values(kafka_consumergroup_current_offset{namespace=\"$namespace\", topic=~\"$topic\"}, consumergroup)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Consumer group",
+          "multi": false,
+          "name": "consumergroup",
+          "options": [],
+          "query": {
+            "query": "label_values(kafka_consumergroup_current_offset{namespace=\"$namespace\", topic=~\"$topic\"}, consumergroup)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Topic and consumer group balancing",
+    "uid": "AjxxiXEnk",
+    "version": 10
+  }

@@ -1,0 +1,772 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 35,
+  "iteration": 1651132661337,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 151,
+      "panels": [],
+      "title": "Deployments $namespace",
+      "type": "row"
+    },
+    {
+      "colorMode": "Panel",
+      "colors": {
+        "crit": "rgba(245, 54, 54, 0.9)",
+        "disable": "rgba(128, 128, 128, 0.9)",
+        "ok": "rgba(50, 128, 45, 0.9)",
+        "warn": "rgba(237, 129, 40, 0.9)"
+      },
+      "cornerRadius": 0,
+      "datasource": null,
+      "displayName": "",
+      "flipCard": false,
+      "flipTime": "2",
+      "fontFormat": "Bold",
+      "gridPos": {
+        "h": 3,
+        "w": 8,
+        "x": 0,
+        "y": 1
+      },
+      "id": 211,
+      "isAutoScrollOnOverflow": false,
+      "isGrayOnNoData": false,
+      "isHideAlertsOnDisable": false,
+      "isIgnoreOKColors": false,
+      "maxAlertNumber": null,
+      "maxPerRow": 8,
+      "pluginVersion": "7.4.5",
+      "repeat": "deployment",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "$$hashKey": "object:197",
+          "aggregation": "Last",
+          "alias": "Available",
+          "crit": 49,
+          "decimals": 0,
+          "displayAliasType": "Always",
+          "displayType": "Regular",
+          "displayValueWithAlias": "When Alias Displayed",
+          "expr": "(sum by (deployment) (avg by (deployment) (kube_deployment_status_replicas_available{namespace=\"$namespace\",deployment=\"$deployment\"}))) / (sum by (deployment) (avg by (deployment) (kube_deployment_status_replicas{namespace=\"$namespace\",deployment=\"$deployment\"}))) * 100",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Available",
+          "refId": "A",
+          "units": "percent",
+          "valueDisplayRegex": ".*",
+          "valueHandler": "Number Threshold",
+          "warn": 99
+        },
+        {
+          "$$hashKey": "object:440",
+          "aggregation": "Last",
+          "alias": "Desired",
+          "decimals": 2,
+          "displayAliasType": "Warning / Critical",
+          "displayType": "Regular",
+          "displayValueWithAlias": "Never",
+          "expr": "sum by (deployment) (avg by (deployment) (kube_deployment_status_replicas{namespace=\"$namespace\",deployment=\"$deployment\"}))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Desired",
+          "refId": "B",
+          "units": "none",
+          "valueDisplayRegex": ".*",
+          "valueHandler": "Text Only"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$deployment",
+      "type": "vonage-status-panel"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 651,
+      "panels": [],
+      "title": "Statefulsets $namespace",
+      "type": "row"
+    },
+    {
+      "colorMode": "Panel",
+      "colors": {
+        "crit": "rgba(245, 54, 54, 0.9)",
+        "disable": "rgba(128, 128, 128, 0.9)",
+        "ok": "rgba(50, 128, 45, 0.9)",
+        "warn": "rgba(237, 129, 40, 0.9)"
+      },
+      "cornerRadius": 0,
+      "datasource": null,
+      "displayName": "",
+      "flipCard": false,
+      "flipTime": "2",
+      "fontFormat": "Bold",
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 5
+      },
+      "id": 653,
+      "isAutoScrollOnOverflow": false,
+      "isGrayOnNoData": false,
+      "isHideAlertsOnDisable": false,
+      "isIgnoreOKColors": false,
+      "maxAlertNumber": null,
+      "maxPerRow": 8,
+      "pluginVersion": "7.4.5",
+      "repeat": "statefulset",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "$$hashKey": "object:197",
+          "aggregation": "Last",
+          "alias": "Available",
+          "crit": 49,
+          "decimals": 0,
+          "displayAliasType": "Always",
+          "displayType": "Regular",
+          "displayValueWithAlias": "When Alias Displayed",
+          "exemplar": true,
+          "expr": "(avg by (statefulset)(kube_statefulset_status_replicas_ready{namespace=\"$namespace\", statefulset=\"$statefulset\"})) / (avg by (statefulset)(kube_statefulset_status_replicas{namespace=\"$namespace\", statefulset=\"$statefulset\"})) * 100",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Available",
+          "refId": "A",
+          "units": "percent",
+          "valueDisplayRegex": ".*",
+          "valueHandler": "Number Threshold",
+          "warn": 99
+        },
+        {
+          "$$hashKey": "object:440",
+          "aggregation": "Last",
+          "alias": "Desired",
+          "decimals": 2,
+          "displayAliasType": "Warning / Critical",
+          "displayType": "Regular",
+          "displayValueWithAlias": "Never",
+          "exemplar": true,
+          "expr": "sum by (statefulset) (avg by (statefulset) (kube_statefulset_status_replicas{namespace=\"$namespace\",statefulset=\"$statefulset\"}))",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Desired",
+          "refId": "B",
+          "units": "none",
+          "valueDisplayRegex": ".*",
+          "valueHandler": "Text Only"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$statefulset",
+      "type": "vonage-status-panel"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 445,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 24,
+            "x": 0,
+            "y": 3
+          },
+          "hiddenSeries": false,
+          "id": 505,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:1105",
+              "alias": "Succeeded",
+              "color": "#73BF69"
+            },
+            {
+              "$$hashKey": "object:1118",
+              "alias": "Failed",
+              "color": "#F2495C"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum (kube_job_complete{namespace=\"$namespace\",condition=\"true\"}) ",
+              "interval": "",
+              "legendFormat": "Succeeded",
+              "refId": "succeeded"
+            },
+            {
+              "expr": "sum(kube_job_failed{namespace=\"$namespace\",condition=\"true\"})",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Failed",
+              "refId": "failed"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Succeeded and failed jobs",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:828",
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:829",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Jobs $namespace",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 89,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 0,
+            "y": 4
+          },
+          "hiddenSeries": false,
+          "id": 91,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "deployment",
+          "repeatDirection": "h",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum by (deployment) (avg by (deployment) (kube_deployment_status_replicas_available{namespace=\"$namespace\",deployment=\"$deployment\"}))",
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            },
+            {
+              "hide": false,
+              "refId": "B"
+            }
+          ],
+          "thresholds": [
+            {
+              "$$hashKey": "object:2474",
+              "colorMode": "critical",
+              "fill": false,
+              "line": true,
+              "op": "lt",
+              "value": 1,
+              "yaxis": "left"
+            },
+            {
+              "$$hashKey": "object:2480",
+              "colorMode": "warning",
+              "fill": false,
+              "line": true,
+              "op": "lt",
+              "value": 2,
+              "yaxis": "left"
+            }
+          ],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$deployment",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:2318",
+              "decimals": 0,
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:2319",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Deployments Historic $namespace",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 806,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fieldConfig": {
+            "defaults": {
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 10
+          },
+          "hiddenSeries": false,
+          "id": 809,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "8.2.2",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "statefulset",
+          "repeatDirection": "h",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "$$hashKey": "object:197",
+              "aggregation": "Last",
+              "alias": "Available",
+              "crit": 49,
+              "decimals": 0,
+              "displayAliasType": "Always",
+              "displayType": "Regular",
+              "displayValueWithAlias": "When Alias Displayed",
+              "exemplar": true,
+              "expr": "(avg by (statefulset)(kube_statefulset_status_replicas_ready{namespace=\"$namespace\", statefulset=\"$statefulset\"}))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "Available",
+              "refId": "A",
+              "units": "percent",
+              "valueDisplayRegex": ".*",
+              "valueHandler": "Number Threshold",
+              "warn": 99
+            },
+            {
+              "$$hashKey": "object:440",
+              "aggregation": "Last",
+              "alias": "Desired",
+              "decimals": 2,
+              "displayAliasType": "Warning / Critical",
+              "displayType": "Regular",
+              "displayValueWithAlias": "Never",
+              "exemplar": true,
+              "expr": "sum by (statefulset) (avg by (statefulset) (kube_statefulset_status_replicas{namespace=\"$namespace\",statefulset=\"$statefulset\"}))",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "Desired",
+              "refId": "B",
+              "units": "none",
+              "valueDisplayRegex": ".*",
+              "valueHandler": "Text Only"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "$statefulset",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:1027",
+              "decimals": 1,
+              "format": "none",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "$$hashKey": "object:1028",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Statefulsets Historic $namespace",
+      "type": "row"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [
+    "application",
+    "deployment"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": null,
+        "definition": "label_values(namespace)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Namespace",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(kube_deployment_labels{namespace=\"$namespace\"},deployment)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Deployment",
+        "multi": true,
+        "name": "deployment",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_deployment_labels{namespace=\"$namespace\"},deployment)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(kube_statefulset_labels{namespace=~\"$namespace\"},statefulset)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "StateFulSet",
+        "multi": true,
+        "name": "statefulset",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_statefulset_labels{namespace=~\"$namespace\"},statefulset)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Deployment status",
+  "uid": "eNtkz2uGk1234",
+  "version": 4
+}

@@ -1,0 +1,2272 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Dashboard to work on improvements for AODB processing.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 81,
+  "iteration": 1644504787022,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(aodb_pipeline_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\"}[5m])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (container) (rate(aodb_pipeline_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\"}[5m])) / \nsum by (container) (rate(aodb_pipeline_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\"}[5m]))",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(aodb_pipeline_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\"}[5m])) / sum(rate(aodb_pipeline_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\"}[5m]))",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        }
+      ],
+      "title": "Average processing time for namespace pr. container ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "filterable": false,
+            "width": 20
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "topic"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 665
+              },
+              {
+                "id": "custom.width"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "topic"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 765
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 94
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Value"
+          }
+        ]
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "kafka_consumergroup_lag_sum{namespace=\"$namespace\", consumergroup=~\"aodb-pipeline|aodb--background-services\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Lag Overview for Namespace",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "consumergroup": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "namespace": true,
+              "pod": true,
+              "prometheus": true,
+              "service": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (pod) (\n(sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))) / \n(sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))) \n)",
+          "hide": false,
+          "interval": "1m",
+          "intervalFactor": 1,
+          "legendFormat": "{{pod}} Total",
+          "refId": "AA"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))) / \n(sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))) \n",
+          "hide": false,
+          "interval": "1m",
+          "intervalFactor": 1,
+          "legendFormat": "{{pod}} {{step}}",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (step) (sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))) / \nsum by (step) (sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))) \n",
+          "hide": true,
+          "interval": "1m",
+          "intervalFactor": 1,
+          "legendFormat": "{{step}}",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "avg(rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\"}[5m])) by (step)",
+          "hide": true,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "{{step}}",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\"}[1m])\n",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(avg(rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\"}[5m])) by (step))",
+          "hide": true,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "Total",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[5m])) / sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[5m])) ",
+          "hide": true,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum ( sum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_sum{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[5m])) / \nsum by (pod,step) (rate(aodb_pipeline_step_duration_seconds_count{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[5m]))) ",
+          "hide": true,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "Total",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Step average processing times - Selected Pods",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:197",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:198",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "description": "Topics rele",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "aodb-background-job",
+                  "aodb-pipeline-dtd",
+                  "aodb-system-message-update",
+                  "traffic-operational-entityvalue-enrichment-default",
+                  "traffic-operational-entityvalue-enrichment-priority",
+                  "traffic-operational-entityvalue-recalculation-default",
+                  "traffic-operational-entityvalue-recalculation-priority"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", topic=~\"traffic-operational-entityvalue-enrichment-default|traffic-operational-entityvalue-recalculation-default|traffic-operational-entityvalue-enrichment-priority|traffic-operational-entityvalue-enrichment-ui|traffic-operational-entityvalue-recalculation-priority|traffic-operational-entityvalue-recalculation-ui|aodb-pipeline-output|aodb-pipeline-dtd|aodb-background-job|qs-aodb-pipeline-output|aodb-system-message-update\"}) by (topic)",
+          "interval": "1m",
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Topic lag",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "aodb_pipeline_runs_ [Completed, Cancelled, Failed]",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 2,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_failed_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]))",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Failed messages",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_cancelled_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) )",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Cancelled messages",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_failed_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) ) +\nsum (increase(aodb_pipeline_runs_cancelled_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) ) + \nsum (increase(aodb_pipeline_runs_completed_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) ) ",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Total Messages",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(aodb_pipeline_runs_completed_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) * 60) ",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Completed",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(aodb_pipeline_runs_failed_total{namespace=\"test7\", job=\"sa-component-aodb-pipeline-default-svc\", pod=\"sa-component-aodb-pipeline-default-865fd68c95-7vjls\"}[1m]) * 60) +\nsum (rate(aodb_pipeline_runs_cancelled_total{namespace=\"test7\", job=\"sa-component-aodb-pipeline-default-svc\", pod=\"sa-component-aodb-pipeline-default-865fd68c95-7vjls\"}[1m]) * 60) + \nsum (rate(aodb_pipeline_runs_completed_total{namespace=\"test7\", job=\"sa-component-aodb-pipeline-default-svc\", pod=\"sa-component-aodb-pipeline-default-865fd68c95-7vjls\"}[1m]) * 60)",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(aodb_pipeline_runs_cancelled_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) * 60)",
+          "hide": true,
+          "interval": "5m",
+          "legendFormat": "Cancelled messages",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "title": "Pipelines Message Processing count pr. min - Selected Pods",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "Processing time from it is received in the adapter to it has been processed in the AODB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "sum(rate(total_message_processing_duration_seconds_sum{namespace=~\"test7\"}[1m])) /  \nsum(rate(total_message_processing_duration_seconds_count{namespace=~\"test7\"}[1m]))  "
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 31,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(rate(total_message_processing_duration_seconds_sum{namespace=~\"$namespace\"}[1m])) /  \nsum(rate(total_message_processing_duration_seconds_count{namespace=~\"$namespace\"}[1m]))  ",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(total_message_processing_duration_seconds_bucket{namespace=\"test7\"}[5m])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "title": "Message Processing in Seconds",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "aodb_pipeline_runs_ [Completed, Cancelled, Failed]",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 25,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_failed_total{namespace=~\"$namespace\", container=~\"$container\"}[1m])  OR on() vector(0))",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Failed messages",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_cancelled_total{namespace=~\"$namespace\", container=~\"$container\"}[1m])  OR on() vector(0) )  ",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Cancelled messages",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_failed_total{namespace=~\"$namespace\", container=~\"$container\"}[1m]) OR on() vector(0) ) +\nsum (increase(aodb_pipeline_runs_cancelled_total{namespace=~\"$namespace\", container=~\"$container\"}[1m]))   + \nsum (increase(aodb_pipeline_runs_completed_total{namespace=~\"$namespace\", container=~\"$container\"}[1m])) ",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Total Messages",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (increase(aodb_pipeline_runs_completed_total{namespace=~\"$namespace\", container=~\"$container\"}[1m])  OR on() vector(0)) ",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Completed",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(aodb_pipeline_runs_failed_total{namespace=\"test7\", job=\"sa-component-aodb-pipeline-default-svc\", pod=\"sa-component-aodb-pipeline-default-865fd68c95-7vjls\"}[1m]) * 60) +\nsum (rate(aodb_pipeline_runs_cancelled_total{namespace=\"test7\", job=\"sa-component-aodb-pipeline-default-svc\", pod=\"sa-component-aodb-pipeline-default-865fd68c95-7vjls\"}[1m]) * 60) + \nsum (rate(aodb_pipeline_runs_completed_total{namespace=\"test7\", job=\"sa-component-aodb-pipeline-default-svc\", pod=\"sa-component-aodb-pipeline-default-865fd68c95-7vjls\"}[1m]) * 60)",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(aodb_pipeline_runs_cancelled_total{namespace=~\"$namespace\", container=~\"$container\", pod=~\"$pod\"}[1m]) * 60)",
+          "hide": true,
+          "interval": "5m",
+          "legendFormat": "Cancelled messages",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "title": "Pipelines Message Processing count pr. min",
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "interval": "1m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "maxDataPoints": 512,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\",container=~\"$container\", pod=~\"$pod\"}[$__rate_interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "F"
+        },
+        {
+          "exemplar": false,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",container=~\"sa-component-aodb-pipeline-default|sa-component-aodb-pipeline-priority|sa-component-aodb|sa-component-aodb-background-services\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(aodb_pipeline_runs_completed_total{namespace=\"$namespace\", job=\"$job\"}[1m]) * 60\n",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(container_cpu_usage_seconds_total{namespace=\"$namespace\",container=~\"sa-component-aodb-pipeline-priority\"}[$__rate_interval])) by (pod)",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        },
+        {
+          "exemplar": false,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",container=~\"\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "current",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Usage Seconds pr. namespace",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:37",
+          "decimals": 2,
+          "format": "short",
+          "label": "core",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:38",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "description": "Incoming Messages on Traffic Operational Topics",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 33
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(increase(message_tried_published{namespace=\"$namespace\", state=\"Success\", topic=~\"traffic-operational-a3000fpl|traffic-operational-admnorwegian|traffic-operational-admsas|traffic-operational-amsamadeus|traffic-operational-apfamadeus|traffic-operational-bagfos|traffic-operational-codesharesas|traffic-operational-coopansfpl|traffic-operational-cpmsita|traffic-operational-dgsfos|traffic-operational-flightdataeurocontrol|traffic-operational-flightlegfomamadeus|traffic-operational-flightoperationcheckincounters|traffic-operational-fuelsas|traffic-operational-groundlegfomamadeus|traffic-operational-groundradareventsicogroundradar|traffic-operational-iclsas|traffic-operational-ldmsas|traffic-operational-ldmsita|traffic-operational-maestrofpl|traffic-operational-mvtsas|traffic-operational-mvtsita|traffic-operational-nitosdeicesequencefpl|traffic-operational-nitosflightlegfpl|traffic-operational-nitosgroundlegfpl|traffic-operational-nitosstatechangefpl|traffic-operational-outboundemails|traffic-operational-palsita|traffic-operational-plesas|traffic-operational-prlsita|traffic-operational-psmsita|traffic-operational-ptmsita|traffic-operational-ptsxovis|traffic-operational-radsas|traffic-planning-flightlegacd\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "1m",
+          "legendFormat": "Total",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(message_tried_published{namespace=\"$namespace\", state=\"Success\", topic=~\"traffic-operational-a3000fpl|traffic-operational-admnorwegian|traffic-operational-admsas|traffic-operational-amsamadeus|traffic-operational-apfamadeus|traffic-operational-bagfos|traffic-operational-codesharesas|traffic-operational-coopansfpl|traffic-operational-cpmsita|traffic-operational-dgsfos|traffic-operational-flightdataeurocontrol|traffic-operational-flightlegfomamadeus|traffic-operational-flightoperationcheckincounters|traffic-operational-fuelsas|traffic-operational-groundlegfomamadeus|traffic-operational-groundradareventsicogroundradar|traffic-operational-iclsas|traffic-operational-ldmsas|traffic-operational-ldmsita|traffic-operational-maestrofpl|traffic-operational-mvtsas|traffic-operational-mvtsita|traffic-operational-nitosdeicesequencefpl|traffic-operational-nitosflightlegfpl|traffic-operational-nitosgroundlegfpl|traffic-operational-nitosstatechangefpl|traffic-operational-outboundemails|traffic-operational-palsita|traffic-operational-plesas|traffic-operational-prlsita|traffic-operational-psmsita|traffic-operational-ptmsita|traffic-operational-ptsxovis|traffic-operational-radsas|traffic-planning-flightlegacd\"}[$__rate_interval])",
+          "hide": false,
+          "interval": "30s",
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Incoming Messages on TOT pr. min",
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 0,
+        "y": 41
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "interval": "1m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "maxDataPoints": 512,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "container_memory_usage_bytes{namespace=~\"$namespace\",container=~\"$container\",pod=~\"$pod\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "F"
+        },
+        {
+          "exemplar": false,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",container=~\"sa-component-aodb-pipeline-default|sa-component-aodb-pipeline-priority|sa-component-aodb|sa-component-aodb-background-services\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(aodb_pipeline_runs_completed_total{namespace=\"$namespace\", job=\"$job\"}[1m]) * 60\n",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(container_cpu_usage_seconds_total{namespace=\"$namespace\",container=~\"sa-component-aodb-pipeline-priority\"}[$__rate_interval])) by (pod)",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        },
+        {
+          "exemplar": false,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",container=~\"\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "current",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Usage Seconds for Pod",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:37",
+          "decimals": 2,
+          "format": "short",
+          "label": "core",
+          "logBase": 1,
+          "max": "2000000000",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:38",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "description": "Lag per topic partition. \nTopic : traffic-operational-entityvalue-enrichment-priority\nConsumergroup: aodb-pipeline",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 44
+      },
+      "id": 19,
+      "options": {
+        "barWidth": 0.72,
+        "groupWidth": 1,
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {},
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"aodb-pipeline\", topic=~\"traffic-operational-entityvalue-enrichment-priority\"}) by (topic, partition)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Enrichment-Priority - Lag per partition",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "Time"
+          }
+        },
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "partition"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 52
+      },
+      "id": 22,
+      "options": {
+        "barWidth": 0.72,
+        "groupWidth": 1,
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {},
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"aodb-pipeline\", topic=~\"traffic-operational-entityvalue-enrichment-default\"}) by (topic, partition)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Enrichment-Default - Lag per partition",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "Time"
+          }
+        },
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "partition"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 60
+      },
+      "id": 26,
+      "options": {
+        "barWidth": 0.72,
+        "groupWidth": 1,
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {},
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"aodb-pipeline\", topic=~\"traffic-operational-entityvalue-recalculation-default\"}) by (topic, partition)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Recalculation-Default - Lag per partition",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "Time"
+          }
+        },
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "partition"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 68
+      },
+      "id": 27,
+      "options": {
+        "barWidth": 0.72,
+        "groupWidth": 1,
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {},
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"aodb-pipeline\", topic=~\"traffic-operational-entityvalue-recalculation-priority\"}) by (topic, partition)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Recalculation-Default - Lag per partition",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "Time"
+          }
+        },
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "partition"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 76
+      },
+      "id": 23,
+      "options": {
+        "barWidth": 0.72,
+        "groupWidth": 1,
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "orientation": "vertical",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {},
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", consumergroup=~\"aodb-pipeline\", topic=~\"traffic-operational-entityvalue-enrichment-ui\"}) by (topic, partition)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{topic}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Enrichment-UI - Lag per partition",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "Time"
+          }
+        },
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "partition"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": null,
+      "description": "Lag on adapter topics",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 84
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(kafka_consumergroup_lag{namespace=~\"$namespace\", topic=~\"traffic-planning-flightlegacd|traffic-operational-amsamadeus|traffic-operational-flightlegfomamadeus|traffic-operational-groundlegfomamadeus|traffic-operational-apfamadeus|traffic-operational-flightdataeurocontrol|traffic-operational-flightoperationcheckincounters|traffic-operational-dgsfos|traffic-operational-bagfos|traffic-operational-nitosflightlegfpl|traffic-operational-nitosgroundlegfpl|traffic-operational-nitosdeicesequencefpl|traffic-operational-nitosstatechangefpl|traffic-operational-maestrofpl|traffic-operational-coopansfpl|traffic-operational-a3000fpl|traffic-operational-admnorwegian|traffic-operational-radsas|traffic-operational-admsas|traffic-operational-codesharesas|traffic-operational-fuelsas|traffic-operational-ldmsas|traffic-operational-outboundemails|traffic-operational-iclsas|traffic-operational-mvtsas|traffic-operational-plesas|traffic-operational-groundradareventsicogroundradar|traffic-operational-palsita|traffic-operational-cpmsita|traffic-operational-ldmsita|traffic-operational-mvtsita|traffic-operational-palsita|traffic-operational-prlsita|traffic-operational-psmsita|traffic-operational-ptmsita|traffic-operational-ptsxovis\", consumergroup=\"aodb-pipeline\"}) by (topic) >= 0\n",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "{{topic}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Adapter Topic lag",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "Count of skipped messages pr. type",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 92
+      },
+      "id": 29,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(increase(skipped_messages_due_to_filter_total{namespace=~\"$namespace\"}[1m])) by (messageType)",
+          "interval": "1m",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Skipped Messages",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 100
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (rate(aodb_pipeline_concurrency_conflicts_total{namespace=\"$namespace\"}[1m])*60) by (container)",
+          "interval": "",
+          "legendFormat": "{{container}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Concurrency conflights",
+      "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 12,
+        "y": 108
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "interval": "1m",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "maxDataPoints": 512,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (rate(container_cpu_usage_seconds_total{namespace=\"$namespace\"}[$__rate_interval])) by (pod)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "F"
+        },
+        {
+          "exemplar": false,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",container=~\"sa-component-aodb-pipeline-default|sa-component-aodb-pipeline-priority|sa-component-aodb|sa-component-aodb-background-services\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(aodb_pipeline_runs_completed_total{namespace=\"$namespace\", job=\"$job\"}[1m]) * 60\n",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum (rate(container_cpu_usage_seconds_total{namespace=\"$namespace\",container=~\"sa-component-aodb-pipeline-priority\"}[$__rate_interval])) by (pod)",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
+        },
+        {
+          "exemplar": false,
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\",container=~\"\"}[$__rate_interval])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "current",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Usage for Pods in Namespace",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:37",
+          "decimals": 2,
+          "format": "short",
+          "label": "core",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:38",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "test7",
+          "value": "test7"
+        },
+        "datasource": "Thanos",
+        "definition": "label_values(kafka_brokers, namespace)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Namespace",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(kafka_brokers, namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": [
+            "sa-component-aodb-7487bdcc-v6jmj",
+            "sa-component-aodb-background-services-79bd8587bc-5v9zt",
+            "sa-component-aodb-dbm-79-6d8h8",
+            "sa-component-aodb-dbm-80-hgldq",
+            "sa-component-aodb-dbm-81-8c97x",
+            "sa-component-aodb-dbplugin-dbm-79-hqwzl",
+            "sa-component-aodb-dbplugin-dbm-80-qq5kw",
+            "sa-component-aodb-dbplugin-dbm-81-k6xpv",
+            "sa-component-aodb-pipeline-default-56f6498d-2qtqf",
+            "sa-component-aodb-pipeline-default-56f6498d-5xtb5",
+            "sa-component-aodb-pipeline-default-56f6498d-748ll",
+            "sa-component-aodb-pipeline-default-56f6498d-7w5zt",
+            "sa-component-aodb-pipeline-default-56f6498d-bj269",
+            "sa-component-aodb-pipeline-default-56f6498d-hg7dp",
+            "sa-component-aodb-pipeline-default-56f6498d-mlhgm",
+            "sa-component-aodb-pipeline-default-56f6498d-n4pb2",
+            "sa-component-aodb-pipeline-default-56f6498d-rs5mv",
+            "sa-component-aodb-pipeline-default-56f6498d-s7tpm",
+            "sa-component-aodb-pipeline-priority-79f44b548-djrjl",
+            "sa-component-aodb-pipeline-priority-79f44b548-j4p7q",
+            "sa-component-aodb-pipeline-priority-79f44b548-k292w",
+            "sa-component-aodb-pipeline-priority-79f44b548-x7q5z",
+            "sa-component-aodb-pipeline-priority-79f44b548-z6xpr",
+            "sa-component-aodb-pipeline-priority-79f44b548-zxnlg",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-2qcr6",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-bzmqt",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-c7lkz",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-h2ddx",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-kwv5g",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-nn2j9",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-nxq6b",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-qc2zs",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-qmhwx",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-zmbkz",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-5x5rr",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-82shk",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-bt44z",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-g4d7g",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-kj94h",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-zk2nb",
+            "sa-component-aodb-pipeline-ui-5fd6fbfc44-sf5xq"
+          ],
+          "value": [
+            "sa-component-aodb-7487bdcc-v6jmj",
+            "sa-component-aodb-background-services-79bd8587bc-5v9zt",
+            "sa-component-aodb-dbm-79-6d8h8",
+            "sa-component-aodb-dbm-80-hgldq",
+            "sa-component-aodb-dbm-81-8c97x",
+            "sa-component-aodb-dbplugin-dbm-79-hqwzl",
+            "sa-component-aodb-dbplugin-dbm-80-qq5kw",
+            "sa-component-aodb-dbplugin-dbm-81-k6xpv",
+            "sa-component-aodb-pipeline-default-56f6498d-2qtqf",
+            "sa-component-aodb-pipeline-default-56f6498d-5xtb5",
+            "sa-component-aodb-pipeline-default-56f6498d-748ll",
+            "sa-component-aodb-pipeline-default-56f6498d-7w5zt",
+            "sa-component-aodb-pipeline-default-56f6498d-bj269",
+            "sa-component-aodb-pipeline-default-56f6498d-hg7dp",
+            "sa-component-aodb-pipeline-default-56f6498d-mlhgm",
+            "sa-component-aodb-pipeline-default-56f6498d-n4pb2",
+            "sa-component-aodb-pipeline-default-56f6498d-rs5mv",
+            "sa-component-aodb-pipeline-default-56f6498d-s7tpm",
+            "sa-component-aodb-pipeline-priority-79f44b548-djrjl",
+            "sa-component-aodb-pipeline-priority-79f44b548-j4p7q",
+            "sa-component-aodb-pipeline-priority-79f44b548-k292w",
+            "sa-component-aodb-pipeline-priority-79f44b548-x7q5z",
+            "sa-component-aodb-pipeline-priority-79f44b548-z6xpr",
+            "sa-component-aodb-pipeline-priority-79f44b548-zxnlg",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-2qcr6",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-bzmqt",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-c7lkz",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-h2ddx",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-kwv5g",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-nn2j9",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-nxq6b",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-qc2zs",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-qmhwx",
+            "sa-component-aodb-pipeline-priority-7b5f7d5768-zmbkz",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-5x5rr",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-82shk",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-bt44z",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-g4d7g",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-kj94h",
+            "sa-component-aodb-pipeline-priority-b5c6d58f7-zk2nb",
+            "sa-component-aodb-pipeline-ui-5fd6fbfc44-sf5xq"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(kube_pod_container_resource_requests{namespace=~\"$namespace\"},pod)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Pipeline pod",
+        "multi": true,
+        "name": "pod",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_pod_container_resource_requests{namespace=~\"$namespace\"},pod)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/sa-component-aodb/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": [
+            "sa-component-aodb-pipeline-default",
+            "sa-component-aodb-pipeline-priority"
+          ],
+          "value": [
+            "sa-component-aodb-pipeline-default",
+            "sa-component-aodb-pipeline-priority"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(kube_pod_container_resource_requests{namespace=\"$namespace\"}, container)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Container",
+        "multi": true,
+        "name": "container",
+        "options": [],
+        "query": {
+          "query": "label_values(kube_pod_container_resource_requests{namespace=\"$namespace\"}, container)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/sa-component-aodb/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "AODB Message Processing Performance",
+  "uid": "Qy_kRl0nk",
+  "version": 5
+}

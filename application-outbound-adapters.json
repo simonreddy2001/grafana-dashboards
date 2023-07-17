@@ -1,0 +1,5920 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Overview and details of outbound adapters",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 10,
+  "iteration": 1674823683860,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 35,
+      "panels": [],
+      "title": "Overview",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-AircraftTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Aircraft Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 15,
+        "x": 0,
+        "y": 1
+      },
+      "id": 29,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "flirt_last_time_service_started_seconds{namespace=\"$namespace\"} > bool on (container,service_type) (flirt_last_time_service_stopped_seconds{namespace=\"$namespace\"} or flirt_last_time_service_started_seconds{namespace=\"$namespace\"} * 0)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "FLIRT services status",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-AircraftTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 1
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sap_last_time_service_started_seconds{namespace=\"$namespace\"} > bool on (container,service_type) (sap_last_time_service_stopped_seconds{namespace=\"$namespace\"} or sap_last_time_service_started_seconds{namespace=\"$namespace\"} * 0)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "B"
+        }
+      ],
+      "title": "SAP services status",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 150
+              },
+              {
+                "color": "red",
+                "value": 300
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a-tow_control_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b-tow_control_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - adapter_last_heartbeat_succeeded_timestamp_seconds{namespace=\"$namespace\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "Last heartbeat succeeded"
+        }
+      ],
+      "title": "Last heartbeat succeeded",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {}
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              },
+              {
+                "color": "#EAB839",
+                "value": 43200
+              },
+              {
+                "color": "green",
+                "value": 86400
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 16
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "min by (container, service_type) (time() - adapter_last_heartbeat_failed_timestamp_seconds{namespace=\"$namespace\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "Last heartbeat succeeded"
+        }
+      ],
+      "title": "Last heartbeat failed",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {}
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 1800
+              },
+              {
+                "color": "red",
+                "value": 3600
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 0,
+        "y": 10
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - max by (container, service_type) (adapter_last_message_received_timestamp_seconds{namespace=\"$namespace\",service_type=~\"flight_data|flight_record|baggage_wait_time|prm_work_order|aviator|Schedules|Logbook\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last message received - operational data",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 93600
+              },
+              {
+                "color": "red",
+                "value": 187200
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 11,
+        "x": 9,
+        "y": 10
+      },
+      "id": 65,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - max by (container, service_type) (adapter_last_message_received_timestamp_seconds{namespace=\"$namespace\",service_type=~\"Airlines|Handlers|Countries|FlightTypes|Airports\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last message received - FLIRT/SAP daily master data",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 10
+      },
+      "id": 66,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - max by (container, service_type) (adapter_last_message_received_timestamp_seconds{namespace=\"$namespace\",service_type=~\"AircraftTypes|Registrations\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last message received - FLIRT/SAP non-daily master data",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 1800
+              },
+              {
+                "color": "red",
+                "value": 3600
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 0,
+        "y": 13
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (max by (container,service_type) (adapter_last_request_succeeded_timestamp_seconds{namespace=\"$namespace\",service_type=~\"flight_data|flight_record|baggage_wait_time|prm_work_order|aviator|Schedules|Logbook\"}))",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last request succeeded - operational data",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 93600
+              },
+              {
+                "color": "red",
+                "value": 187200
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 11,
+        "x": 9,
+        "y": 13
+      },
+      "id": 63,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (max by (container,service_type) (adapter_last_request_succeeded_timestamp_seconds{namespace=\"$namespace\",service_type=~\"Airlines|Handlers|Countries|FlightTypes|Airports\"}))",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last request succeeded - FLIRT/SAP daily master data",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 13
+      },
+      "id": 64,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - (max by (container,service_type) (adapter_last_request_succeeded_timestamp_seconds{namespace=\"$namespace\",service_type=~\"AircraftTypes|Registrations\"}))",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last request succeeded - FLIRT/SAP non-daily master data",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 43200
+              },
+              {
+                "color": "green",
+                "value": 86400
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time() - max by (container,service_type) (adapter_last_request_failed_timestamp_seconds{namespace=\"$namespace\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Last request failed",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "id": 51,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "aspnetcore_healthcheck_status{name=~\".*Kafka.*\",namespace=\"$namespace\",container=\"cph-adapter-edw\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "EDW",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "aspnetcore_healthcheck_status{name=~\".*Kafka.*\",namespace=\"$namespace\",container=\"sa-adapter-falck-prm\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Falck PRM Work Order",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "aspnetcore_healthcheck_status{name=~\".*Kafka.*\",namespace=\"$namespace\",container=\"cph-adapter-aviator\"}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Aviator",
+          "refId": "C"
+        }
+      ],
+      "title": "Kafka connection status",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"FalckPRM\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"sa-adapter-falck-prm\",service_type=\"flight_data\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"FalckPRM\"} * 0)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}-flight_data",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterFLT\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-sasoutbound-flt\",service_type=\"SasOutboundAdapterFLT\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterFLT\"} * 0)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterBaggageWaitTime\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-sasoutbound-baggage\",service_type=\"SasOutboundAdapterBaggageWaitTime\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterBaggageWaitTime\"} * 0)",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{container}}",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"AviatorAdapter\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-aviator\",service_type=\"aviator\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"AviatorAdapter\"} * 0)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{container}}",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-nitos-towcontrol-a\",service_type=\"tow_control\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\",container=\"cph-adapter-nitos-towcontrol-a\"} * 0)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{container}}",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-nitos-towcontrol-b\",service_type=\"tow_control\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\",container=\"cph-adapter-nitos-towcontrol-b\"} * 0)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{container}}",
+          "refId": "F"
+        }
+      ],
+      "title": "Query Stream subscription status",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 10,
+      "panels": [],
+      "title": "Details",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-data-update-topic"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-data-update-topic"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airports"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "id": 54,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (increase(adapter_message_received_total{namespace=\"$namespace\"}[5m]))",
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Data received per 5 minutes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-data-update-topic"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-data-update-topic"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airports"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 25
+      },
+      "id": 55,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (increase(adapter_request_success_total{namespace=\"$namespace\"}[5m]))",
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Successful requests per 5 minutes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-data-update-topic"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-data-update-topic"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-dtd"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 56,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (increase(adapter_request_failure_total{namespace=\"$namespace\"}[5m]))",
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Unsuccessful requests per 5 minutes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-data-update-topic"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-data-update-topic"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-dtd"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 32
+      },
+      "id": 57,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (increase(adapter_message_processing_failure_total{namespace=\"$namespace\"}[5m]))",
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Message processing failures per 5 minutes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-data-update-topic"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-data-update-topic"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airports"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (rate(adapter_message_processing_duration_seconds_sum{namespace=\"$namespace\"}[5m])) / (sum by (container,service_type) (rate(adapter_message_processing_duration_seconds_count{namespace=\"$namespace\"}[5m])))",
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Message processing duration 5 minute average",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Countries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Countries"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Aircraft Registrations"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-bagggage_wait_time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-FlightTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Flight Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airlines"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airlines"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Handlers"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Handlers"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Logbook"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Logbook"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-aodb-pipeline-output"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW aodb-pipeline-output"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-data-update-topic"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-data-update-topic"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-edw-masterdata-dtd"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "EDW masterdata-dtd"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a-tow_control"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b-tow_control"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a-tow_control_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b-tow_control_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airports"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (rate(adapter_server_response_duration_seconds_sum{namespace=\"$namespace\"}[5m])) / sum by (container,service_type)  (rate(adapter_server_response_duration_seconds_count{namespace=\"$namespace\"}[5m]))",
+          "interval": "",
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Endpoint response duration 5 minute average",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 51
+      },
+      "id": 70,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container, client_name) (rate(qs_client_subscriber_processing_milliseconds_total{namespace=\"$namespace\", mode!=\"idle\"}[1m])/10)\n",
+          "interval": "",
+          "legendFormat": "{{client_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Processing utilization per minute",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 58
+      },
+      "id": 72,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (client_name) (increase(qs_client_subscription_initialization_started{namespace=\"$namespace\"}[5m]))\n",
+          "interval": "",
+          "legendFormat": "{{client_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Query Stream subscription initializations per 5 minutes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Schedules"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Schedules"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sap-Airports"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAP Airports"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-AircraftTypes"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Aircraft Types"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-flirt-Registrations"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FLIRT Aircraft Registrations"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 65
+      },
+      "id": 68,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container, service_type) (increase(adapter_query_stream_fetch_failed_total{namespace=\"$namespace\"}[5m]))",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Query Stream REST fetch fails per 5 minutes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 72
+      },
+      "id": 49,
+      "maxDataPoints": null,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum by (container,entity_set_name) (rate(qs_client_actual_qs_request_duration_sum{namespace=\"$namespace\"}[5m]) / rate(qs_client_actual_qs_request_duration_count{namespace=\"$namespace\"}[5m]))",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "{{container}}-{{entity_set_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Query Stream REST response duration 5 minute average",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 80
+      },
+      "id": 47,
+      "panels": [],
+      "title": "Message processing duration for $container",
+      "type": "row"
+    },
+    {
+      "cards": {
+        "cardPadding": 0,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateOranges",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "tsbuckets",
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 81
+      },
+      "heatmap": {},
+      "hideZeroBuckets": false,
+      "highlightCards": true,
+      "id": 48,
+      "legend": {
+        "show": false
+      },
+      "maxDataPoints": 25,
+      "maxPerRow": 4,
+      "pluginVersion": "8.2.2",
+      "repeat": "service_type",
+      "repeatDirection": "h",
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (increase(adapter_message_processing_duration_seconds_bucket{namespace=\"$namespace\",container=\"$container\", service_type=\"$service_type\"}[$__interval])) by (le) ",
+          "format": "heatmap",
+          "interval": "",
+          "legendFormat": "{{le}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Service type: $service_type",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": 0,
+        "format": "s",
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": null
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 87
+      },
+      "id": 61,
+      "panels": [],
+      "repeat": "container",
+      "title": "Endpoint response duration for $container",
+      "type": "row"
+    },
+    {
+      "cards": {
+        "cardPadding": 0,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateOranges",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "tsbuckets",
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 88
+      },
+      "heatmap": {},
+      "hideZeroBuckets": false,
+      "highlightCards": true,
+      "id": 62,
+      "legend": {
+        "show": false
+      },
+      "maxDataPoints": 25,
+      "maxPerRow": 4,
+      "pluginVersion": "8.2.2",
+      "repeatDirection": "h",
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (increase(adapter_message_processing_duration_seconds_bucket{namespace=\"$namespace\",container=\"$container\", service_type=\"$service_type\"}[$__interval])) by (le) ",
+          "format": "heatmap",
+          "interval": "",
+          "legendFormat": "{{le}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Service type: $service_type",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": 0,
+        "format": "s",
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": null
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 94
+      },
+      "id": 37,
+      "panels": [],
+      "title": "Query Stream REST response durations for $container",
+      "type": "row"
+    },
+    {
+      "cards": {
+        "cardPadding": 0,
+        "cardRound": null
+      },
+      "color": {
+        "cardColor": "#b4ff00",
+        "colorScale": "sqrt",
+        "colorScheme": "interpolateOranges",
+        "exponent": 0.5,
+        "mode": "spectrum"
+      },
+      "dataFormat": "tsbuckets",
+      "datasource": null,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 95
+      },
+      "heatmap": {},
+      "hideZeroBuckets": false,
+      "highlightCards": true,
+      "id": 33,
+      "legend": {
+        "show": false
+      },
+      "maxDataPoints": 25,
+      "maxPerRow": 4,
+      "pluginVersion": "8.2.2",
+      "repeat": "entity_set_name",
+      "repeatDirection": "h",
+      "reverseYBuckets": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum (increase(qs_client_actual_qs_request_duration_bucket{namespace=\"$namespace\",container=\"$container\", entity_set_name=\"$entity_set_name\"}[$__interval])) by (le) ",
+          "format": "heatmap",
+          "interval": "",
+          "legendFormat": "{{le}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Entity set: $entity_set_name",
+      "tooltip": {
+        "show": true,
+        "showHistogram": false
+      },
+      "type": "heatmap",
+      "xAxis": {
+        "show": true
+      },
+      "xBucketNumber": null,
+      "xBucketSize": null,
+      "yAxis": {
+        "decimals": 0,
+        "format": "s",
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true,
+        "splitFactor": null
+      },
+      "yBucketBound": "auto",
+      "yBucketNumber": null,
+      "yBucketSize": null
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 102
+      },
+      "id": 59,
+      "panels": [],
+      "title": "Status history",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 103
+      },
+      "id": 4,
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "flirt_last_time_service_started_seconds{namespace=\"$namespace\"} > bool on (container,service_type) (flirt_last_time_service_stopped_seconds{namespace=\"$namespace\"} or flirt_last_time_service_started_seconds{namespace=\"$namespace\"} * 0)",
+          "instant": false,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "FLIRT {{service_type}}",
+          "refId": "A"
+        }
+      ],
+      "title": "FLIRT services status history",
+      "type": "status-history"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 103
+      },
+      "id": 27,
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sap_last_time_service_started_seconds{namespace=\"$namespace\"} > bool on (container,service_type) (sap_last_time_service_stopped_seconds{namespace=\"$namespace\"} or sap_last_time_service_started_seconds{namespace=\"$namespace\"} * 0)",
+          "hide": false,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "SAP {{service_type}}",
+          "refId": "B"
+        }
+      ],
+      "title": "SAP services status history",
+      "type": "status-history"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              },
+              {
+                "color": "yellow",
+                "value": 2
+              },
+              {
+                "color": "green",
+                "value": 4
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a-tow_control"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b-tow_control"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a-tow_control_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A Heartbeat"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b-tow_control_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B Heartbeat"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 111
+      },
+      "id": 2,
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "$$hashKey": "object:24",
+          "aggregation": "Last",
+          "decimals": 2,
+          "displayAliasType": "Warning / Critical",
+          "displayType": "Regular",
+          "displayValueWithAlias": "Never",
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (increase(adapter_heartbeat_success_total{namespace=\"$namespace\"}[5m]))",
+          "format": "time_series",
+          "instant": false,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A",
+          "units": "none",
+          "valueHandler": "Number Threshold"
+        }
+      ],
+      "title": "Amount of heartbeats successful per 5 minutes",
+      "type": "status-history"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator-aviator_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-baggage_wait_time_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-prm_work_order_heartbeat"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck PRM Work Order"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 118
+      },
+      "id": 28,
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "$$hashKey": "object:24",
+          "aggregation": "Last",
+          "decimals": 2,
+          "displayAliasType": "Warning / Critical",
+          "displayType": "Regular",
+          "displayValueWithAlias": "Never",
+          "exemplar": true,
+          "expr": "sum by (container,service_type) (increase(adapter_heartbeat_failure_total{namespace=\"$namespace\"}[5m]))",
+          "format": "time_series",
+          "instant": false,
+          "interval": "5m",
+          "intervalFactor": 1,
+          "legendFormat": "{{container}}-{{service_type}}",
+          "refId": "A",
+          "units": "none",
+          "valueHandler": "Number Threshold"
+        }
+      ],
+      "title": "Amount of heartbeats failed per 5 minutes",
+      "type": "status-history"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sa-adapter-falck-prm-flight_data"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Falck Flight Data"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-flt-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Flight Record"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-sasoutbound-baggage-flight_record"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SAS Outbound Baggage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-aviator"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Aviator"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-a"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control A"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cph-adapter-nitos-towcontrol-b"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "NITOS Tow Control B"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 125
+      },
+      "id": 32,
+      "options": {
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"FalckPRM\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"sa-adapter-falck-prm\",service_type=\"flight_data\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"FalckPRM\"} * 0)",
+          "format": "time_series",
+          "instant": false,
+          "interval": "5m",
+          "legendFormat": "{{container}}-flight_data",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterFLT\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-sasoutbound-flt\",service_type=\"SasOutboundAdapterFLT\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterFLT\"} * 0)",
+          "hide": false,
+          "instant": false,
+          "interval": "5m",
+          "legendFormat": "{{container}}-flight_record",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterBaggageWaitTime\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-sasoutbound-baggage\",service_type=\"SasOutboundAdapterBaggageWaitTime\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"SasOutboundAdapterBaggageWaitTime\"} * 0)",
+          "hide": false,
+          "instant": false,
+          "interval": "5m",
+          "legendFormat": "{{container}}-flight_record",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"AviatorAdapter\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-aviator\",service_type=\"aviator\"} or qs_client_last_time_subscription_initialization_started{namespace=\"test1\",client_name=\"AviatorAdapter\"} * 0)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "{{container}}",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-nitos-towcontrol-a\",service_type=\"tow_control\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\",container=\"cph-adapter-nitos-towcontrol-a\"} * 0)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "{{container}}",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "max by (container) (qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\"}) > bool on (container) max by (container) (adapter_last_query_stream_subscription_dropped_timestamp_seconds{namespace=\"$namespace\",container=\"cph-adapter-nitos-towcontrol-b\",service_type=\"tow_control\"} or qs_client_last_time_subscription_initialization_started{namespace=\"$namespace\",client_name=\"TowControlQsSubscription\",container=\"cph-adapter-nitos-towcontrol-b\"} * 0)",
+          "hide": false,
+          "interval": "5m",
+          "legendFormat": "{{container}}",
+          "refId": "F"
+        }
+      ],
+      "title": "Query Stream subscription status",
+      "type": "status-history"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [
+    "application"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "test1",
+          "value": "test1"
+        },
+        "datasource": null,
+        "definition": "label_values(namespace)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Environment",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "(test[0-9])",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "cph-adapter-aviator",
+          "value": "cph-adapter-aviator"
+        },
+        "datasource": null,
+        "definition": "label_values(adapter_message_processing_duration_seconds_bucket,container)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Adapter",
+        "multi": false,
+        "name": "container",
+        "options": [],
+        "query": {
+          "query": "label_values(adapter_message_processing_duration_seconds_bucket,container)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(adapter_message_received_total{container=\"$container\"},service_type)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Service",
+        "multi": true,
+        "name": "service_type",
+        "options": [],
+        "query": {
+          "query": "label_values(adapter_message_received_total{container=\"$container\"},service_type)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(qs_client_actual_qs_request_duration_bucket{container=\"$container\"},entity_set_name)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "EntitySetName",
+        "multi": true,
+        "name": "entity_set_name",
+        "options": [],
+        "query": {
+          "query": "label_values(qs_client_actual_qs_request_duration_bucket{container=\"$container\"},entity_set_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Outbound Adapters",
+  "uid": "15e4407827ee1befb4312d9ba9c3fae9d9c7b5b4",
+  "version": 1
+}

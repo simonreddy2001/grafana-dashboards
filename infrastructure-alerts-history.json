@@ -1,0 +1,310 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 65,
+  "iteration": 1647459138969,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "lineWidth": 0
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Not firing"
+                },
+                "1": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Firing"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 28,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "none"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ALERTS{alertname!=\"PrometheusAlertmanagerE2eDeadManSwitch\",alertname=~\"$alertname\",namespace=~\"$namespace\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{$label}}:{{$label1}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Alerts",
+      "transformations": [],
+      "type": "state-timeline"
+    }
+  ],
+  "schemaVersion": 31,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": [
+            "aspnetcoreHealthcheckUnhealthy"
+          ],
+          "value": [
+            "aspnetcoreHealthcheckUnhealthy"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(ALERTS, alertname)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Alertname",
+        "multi": true,
+        "name": "alertname",
+        "options": [],
+        "query": {
+          "query": "label_values(ALERTS, alertname)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": [
+            "prod"
+          ],
+          "value": [
+            "prod"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(ALERTS,namespace)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Namespace",
+        "multi": true,
+        "name": "namespace",
+        "options": [],
+        "query": {
+          "query": "label_values(ALERTS,namespace)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": [
+            "container"
+          ],
+          "value": [
+            "container"
+          ]
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Label",
+        "multi": true,
+        "name": "label",
+        "options": [
+          {
+            "selected": false,
+            "text": "alertname",
+            "value": "alertname"
+          },
+          {
+            "selected": false,
+            "text": "namespace",
+            "value": "namespace"
+          },
+          {
+            "selected": false,
+            "text": "deployment",
+            "value": "deployment"
+          },
+          {
+            "selected": false,
+            "text": "pod",
+            "value": "pod"
+          },
+          {
+            "selected": true,
+            "text": "container",
+            "value": "container"
+          },
+          {
+            "selected": false,
+            "text": "topic",
+            "value": "topic"
+          },
+          {
+            "selected": false,
+            "text": "consumergroup",
+            "value": "consumergroup"
+          },
+          {
+            "selected": false,
+            "text": "name",
+            "value": "name"
+          }
+        ],
+        "query": "alertname,namespace,deployment,pod,container,topic,consumergroup,name",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [],
+          "value": []
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Label1",
+        "multi": true,
+        "name": "label1",
+        "options": [
+          {
+            "selected": false,
+            "text": "alertname",
+            "value": "alertname"
+          },
+          {
+            "selected": false,
+            "text": "namespace",
+            "value": "namespace"
+          },
+          {
+            "selected": false,
+            "text": "deployment",
+            "value": "deployment"
+          },
+          {
+            "selected": false,
+            "text": "pod",
+            "value": "pod"
+          },
+          {
+            "selected": false,
+            "text": "container",
+            "value": "container"
+          },
+          {
+            "selected": false,
+            "text": "topic",
+            "value": "topic"
+          },
+          {
+            "selected": false,
+            "text": "consumergroup",
+            "value": "consumergroup"
+          },
+          {
+            "selected": false,
+            "text": "name",
+            "value": "name"
+          }
+        ],
+        "query": "alertname,namespace,deployment,pod,container,topic,consumergroup,name",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Alerts timeline",
+  "uid": "J7QXbcP7z",
+  "version": 2
+}
